@@ -9,9 +9,9 @@ let isAnagram=(str1,str2)=>{
     for(let val of str2)
     {   
         if(val in frequencyNum)
-        if(frequencyNum[val]>0)
-        frequencyNum[val]-=1;
-        else return false;
+            if(frequencyNum[val]>0)
+            frequencyNum[val]-=1;
+            else return false;
         else return false;
 
     } 
