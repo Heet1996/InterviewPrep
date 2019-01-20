@@ -19,4 +19,4 @@ let isAnagram=(str1,str2)=>{
     
 }
 
-console.log(isAnagram("aa","ab"));
+console.log(isAnagram("aaa","aa"));
