@@ -8,17 +8,18 @@ function findLongestSubstring(str){
         {
             obj[c]=i+1;
             count+=1;
+            if(count>max)
+            max=count;
         }
         else {
-            i=obj[c];
-            continue;
+            obj={};
+            count=0;
+            i=i-1;
         }
-        if(count>max)
-        max=count;
     
     }
     
-    return obj;
+    return max+1;
   }
 
-  console.log(findLongestSubstring('thisisawesome'));
+  console.log(findLongestSubstring('thecatinthehat'));
