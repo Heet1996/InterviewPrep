@@ -29,6 +29,7 @@ class SinglyLinkedList
             
         }
         this.length+=1;
+        return this;
     }
     pop()
     {   
@@ -77,18 +78,69 @@ class SinglyLinkedList
         return this;
     }
     get(pos)
-    {   let temp=this.head;
+    {   
+        if(pos<0 || pos>this.length) return null; 
+        let temp=this.head;
+
         while(pos && temp.next)
         {
             temp=temp.next;
             pos--;
         }
-        if(pos) return null;
-        return temp.value;
+        
+        return temp;
+    }
+    set(pos,val)
+    {
+        if(!this.get(pos)) return false;
+        let temp=this.get(pos);
+        temp.value=val;
+        return true
+
+    }
+    insert(val,pos)
+    {
+        if(!this.get(pos)) return false;
+
+        if(pos==0)
+        {return this.unshift(val)}
+        
+        if(pos==this.length)
+        {return this.push(val)}
+        
+
+        let prev=this.get(pos-1);
+        let newNode=new Node(val);
+        newNode.next=prev.next;
+        prev.next=newNode;
+        this.length+=1;
+        return prev;
+    }
+    remove(pos)
+    {
+        if(!this.get(pos)) return false;
+        if(pos==0) {this.shift();return true};
+        if(pos==this.length-1)
+        {   
+            this.tail=this.get(pos-1);
+            this.tail.next=null;
+            this.length-=1;
+            return this;
+        } 
+        let temp=this.get(pos-1);
+        let curr=temp.next;
+        temp.next=curr.next;
+        curr.next=null;
+        this.length-=1;
+        return temp;
+
+
     }
 }
 let list=new SinglyLinkedList();
 list.push(3);
+list.push(4);
+list.push(5);
 
+console.log(list.remove(2));
 
-console.log(list.get(2));
