@@ -121,26 +121,48 @@ class SinglyLinkedList
         if(!this.get(pos)) return false;
         if(pos==0) {this.shift();return true};
         if(pos==this.length-1)
-        {   
-            this.tail=this.get(pos-1);
-            this.tail.next=null;
-            this.length-=1;
-            return this;
-        } 
+        return this.pop();
+            
+        
         let temp=this.get(pos-1);
         let curr=temp.next;
         temp.next=curr.next;
         curr.next=null;
         this.length-=1;
         return temp;
-
-
+    }
+    reverse()
+    {   if(!this) return null;
+        
+        let a=null;
+        let b=this.head;
+        let temp;
+        while(b!=null)
+        {
+            temp=b.next;
+            b.next=a;
+            a=b;
+            b=temp;
+        }
+        this.tail=this.head;
+        this.head=a;
+        return this;
+    }
+    traverse()
+    {   this.reverse();
+        let temp=this.head;
+        while(temp!=null)
+        {
+            console.log(temp.value);
+            temp=temp.next;
+        }
     }
 }
 let list=new SinglyLinkedList();
 list.push(3);
 list.push(4);
-list.push(5);
 
-console.log(list.remove(2));
+
+
+console.log(list.traverse());
 
