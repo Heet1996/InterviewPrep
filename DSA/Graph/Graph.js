@@ -35,7 +35,7 @@ class Graph
         let arr=[...this.adjacencyList[v]];
         for(let i=0;i<arr.length;i++)
             this.removeEdge(arr[i],v);
-        this.adjacencyList[v]
+        delete this.adjacencyList[v]
 
     }
 }
