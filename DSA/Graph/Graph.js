@@ -58,6 +58,28 @@ class Graph
         this.dfs(v,visited,result);
         return result;
     }
+    dfs_iterative(v)
+    {
+        if(!this.adjacencyList[v]) return ;
+        let visited={};
+        let result=[];
+        let stack=[];
+        stack.push(v);
+        visited[v]=true;
+        while(stack.length>0)
+        {
+            let el=stack.pop();
+            result.push(el);
+            for(let i of this.adjacencyList[el])
+            {   if(!visited[i])
+                {  
+                    stack.push(i);
+                    visited[i]=true;
+                }
+            }
+        }
+        return result;
+    }
 }
 let g=new Graph();
 g.addVertex("A");
@@ -76,4 +98,20 @@ g.addEdge("D","F");
 g.addEdge("E","F");
 
 console.log(g.dfs_recursive("A"));
+console.log(g.dfs_iterative("F"));
 
+//Algo on recursion
+
+/*
+1.If adjaceny list not present return nil
+2.Intialize an result=[] and visited={}
+3.Pass it to dfs_recursive
+4.dfs_recursive - a.if adjacency list is not present return
+                  b.visited[v]=true  
+                  c.Push it into result  
+                  d.Iterate all over the adjacency list and pass the item to function
+5.Return the result  
+
+*/
+
+//Algo on iterative
