@@ -80,6 +80,33 @@ class Graph
         }
         return result;
     }
+    bfs_iterative(v)
+    {
+        if(!this.adjacencyList[v]) return;
+        let visited={};
+        let result=[];
+        let queue=[];
+        queue.push(v);
+        visited[v]=true;
+        while(queue.length)
+        {
+            let el=queue.shift();
+            result.push(el);
+            
+            for(let i of this.adjacencyList[el])
+                {   
+                    if(!visited[i])
+                    {                    
+                    queue.push(i);
+                    visited[i]=true;
+                    }
+                }
+            
+        }
+        return result;
+    }
+    
+
 }
 let g=new Graph();
 g.addVertex("A");
@@ -99,6 +126,7 @@ g.addEdge("E","F");
 
 console.log(g.dfs_recursive("A"));
 console.log(g.dfs_iterative("F"));
+console.log(g.bfs_iterative("A"));
 
 //Algo on recursion
 
